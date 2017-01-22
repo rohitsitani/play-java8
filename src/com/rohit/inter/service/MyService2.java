@@ -1,4 +1,4 @@
-package com.rohit.sample.service;
+package com.rohit.inter.service;
 
 @FunctionalInterface
 public interface MyService2 {
