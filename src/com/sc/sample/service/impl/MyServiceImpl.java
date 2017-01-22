@@ -11,13 +11,22 @@ public class MyServiceImpl extends Object implements MyService1, MyService2 {
 		MyService1.super.defaultMethod1(str);
 	}
 
-
 	@Override
 	public void defaultMethodCommon(String str) {
 		// TODO Auto-generated method stub
 		MyService1.super.defaultMethodCommon(str);
 	}
 
+	@Override
+	public String toString() {
+		return "MyServiceImpl []";
+	}
+
+	@Override
+	public void abstractMethod() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public static void main(String[] args) {
 		MyServiceImpl myService = new MyServiceImpl();
@@ -26,19 +35,5 @@ public class MyServiceImpl extends Object implements MyService1, MyService2 {
 		myService.defaultMethodCommon("impl");
 		MyService1.staticMethod();
 	}
-
-
-	@Override
-	public String toString() {
-		return "MyServiceImpl []";
-	}
-
-
-	@Override
-	public void abstractMethod() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 }
