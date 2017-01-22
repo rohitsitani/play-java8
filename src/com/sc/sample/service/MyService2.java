@@ -1,4 +1,4 @@
-package com.sc.sample.service.inteface;
+package com.sc.sample.service;
 
 @FunctionalInterface
 public interface MyService2 {
