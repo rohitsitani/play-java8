@@ -1,5 +1,6 @@
 package com.rohit.lambda;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 //@FunctionalInterface
@@ -23,7 +24,10 @@ public interface MyLambdaInterface {
 		MyLambdaInterface max = Math::max;
 		System.out.println("max:" + max.calculate(3, 4));
 		//using the general Function class of the new function package in java 
-		Function<Integer, Integer> abc = Math::abs;
-		System.out.println("function.apply:" + abc.apply(-111));
+		Function<Integer, Integer> function = Math::abs;
+		System.out.println("function.apply:" + function.apply(-111));
+		//using the general Function class of the new function package in java 
+		BiFunction<Integer, Integer, Integer> biFunction = Math::max;
+		System.out.println("biFunction.apply:" + biFunction.apply(3, 4));
 	}
 }
