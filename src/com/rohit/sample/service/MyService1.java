@@ -1,4 +1,4 @@
-package com.sc.sample.service;
+package com.rohit.sample.service;
 
 public interface MyService1 {
 	

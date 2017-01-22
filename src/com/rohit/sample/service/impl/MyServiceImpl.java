@@ -1,7 +1,7 @@
-package com.sc.sample.service.impl;
+package com.rohit.sample.service.impl;
 
-import com.sc.sample.service.MyService1;
-import com.sc.sample.service.MyService2;
+import com.rohit.sample.service.MyService1;
+import com.rohit.sample.service.MyService2;
 
 public class MyServiceImpl extends Object implements MyService1, MyService2 {
 	
