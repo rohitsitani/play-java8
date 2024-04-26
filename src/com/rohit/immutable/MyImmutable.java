@@ -11,7 +11,7 @@ public class MyImmutable {
 		for(Integer obj : intList) {
 			obj = obj + 1;
 		}
-		System.out.println("The valur does not change as Integer is immutable like String and other Wrapper classes:" + intList);
+		System.out.println("The value does not change as Integer is immutable like String and other Wrapper classes:" + intList);
 	}
 
 }
