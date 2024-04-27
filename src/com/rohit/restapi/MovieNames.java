@@ -5,9 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -45,8 +43,7 @@ public class MovieNames {
 		return null;
 	}
 	
-	private void get(String url, String subtitle, int page, List<String> titles) {
-		url = String.format(url+"?Title=%s", subtitle);
+	private void get(String url, int page, List<String> titles) {
 		String response = this.getResponseGivenURL(url, page);
 		Gson gson = new Gson();
 		JsonObject jsonObject = gson.fromJson(response, JsonObject.class);
@@ -61,7 +58,7 @@ public class MovieNames {
 		}
 		if (totalPages > page) {
 			//more pages to read
-			this.get(url, subtitle, page+1, titles);
+			this.get(url, page+1, titles);
 		}
 		return;
 	}
@@ -71,7 +68,8 @@ public class MovieNames {
 		String title = "Waterworld";
 		List<String> titles = new ArrayList<String>();
 		MovieNames names = new MovieNames();
-		names.get(URL, title, 1, titles);
+		String url = String.format(URL+"?Title=%s", title);
+		names.get(url, 1, titles);
 		Collections.sort(titles);
 		for (String str : titles)
 		System.out.println(str);
