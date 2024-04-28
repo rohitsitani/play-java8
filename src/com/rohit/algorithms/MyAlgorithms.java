@@ -25,8 +25,8 @@ public class MyAlgorithms {
 	public static void miniMaxSum(List<Integer> arr) {
 		// Write your code here
 		Collections.sort(arr);
-		Integer minSum = 0;
-		Integer maxSum = 0;
+		Long minSum = 0L;
+		Long maxSum = 0L;
 		for (int i = 0; i < arr.size(); i++) {
 			if (i != arr.size() - 1)
 				minSum = minSum + arr.get(i);
