@@ -19,8 +19,7 @@ public class MyAlgorithms {
     }
 
 	public static void main(String[] args) {
-		MyAlgorithms algorithms = new MyAlgorithms();
-		algorithms.staircase(10);
+		MyAlgorithms.staircase(10);
 	}
 
 }
