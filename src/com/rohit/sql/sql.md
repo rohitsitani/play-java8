@@ -8,3 +8,6 @@ select name from students, friends, packages p1, packages p2 where students.id =
 select city, a from (select city, length(city) as a from station order by length (city) desc, city) where rownum = 1
 union
 select city, b from (select city, length(city) as b from station order by length(city) asc, city) where rownum = 1; 
+
+#symetric pairs
+select a.x, a.y from functions a, functions b where a.x = b.y and b.x=a.y group by a.x, a.y having a.x<a.y or count(a.x)>1 order by a.x ;
