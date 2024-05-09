@@ -300,7 +300,7 @@ public class MyAlgorithms {
 		int valleyCount = 0;
 		for (char step : path.toCharArray()) {
 			if ('D' == step) {
-				// decent
+				//descend
 				location--;
 				if (currently == 'I')
 					currently = 'D';
