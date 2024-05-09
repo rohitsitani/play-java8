@@ -259,7 +259,7 @@ public class MyAlgorithms {
 			tempList.add(head2);
 			head2 = head2.next;
 		}
-		Collections.sort(tempList, (obj1,obj2) -> obj1.data - obj2.data);
+		Collections.sort(tempList, (obj1, obj2) -> obj1.data - obj2.data);
 		for (int i = 0; i < tempList.size(); i++) {
 			if (i == tempList.size() - 1) {
 				tempList.get(i).next = null;
@@ -268,6 +268,56 @@ public class MyAlgorithms {
 			}
 		}
 		return tempList.get(0);
+	}
+
+	public static int pageCount(int n, int p) {
+		// Write your code here
+		// no flips needed.
+		if (n == p || p == 1 || (n - p == 1 && n % 2 != 0)) {
+			System.out.println("returning 0");
+			return 0;
+		}
+		int forward = (p - p % 2) / 2;
+		int diff = (n - p);
+		if (diff == 1) {
+			return 1;
+		}
+		int backward = (diff - diff % 2) / 2;
+		if (forward >= backward) {
+			System.out.println("returning backward:" + backward);
+			return backward;
+		} else {
+			System.out.println("returning forward:" + forward);
+			return forward;
+		}
+
+	}
+
+	public static int countingValleys(int steps, String path) {
+		// Write your code here
+		int location = 0;
+		char currently = 'I';
+		int valleyCount = 0;
+		for (char step : path.toCharArray()) {
+			if ('D' == step) {
+				// decent
+				location--;
+				if (currently == 'I')
+					currently = 'D';
+			} else {
+				// climb
+				location++;
+				if (currently == 'I')
+					currently = 'U';
+			}
+			if (location == 0) {
+				if (currently == 'D') {
+					valleyCount++;
+				}
+				currently = 'I';
+			}
+		}
+		return valleyCount;
 	}
 
 	public static void main(String[] args) {
