@@ -300,7 +300,7 @@ public class MyAlgorithms {
 		int valleyCount = 0;
 		for (char step : path.toCharArray()) {
 			if ('D' == step) {
-				//descend
+				// descend
 				location--;
 				if (currently == 'I')
 					currently = 'D';
@@ -318,6 +318,21 @@ public class MyAlgorithms {
 			}
 		}
 		return valleyCount;
+	}
+
+	static int getMoneySpent(int[] keyboards, int[] drives, int b) {
+		/*
+		 * Write your code here.
+		 */
+		List<Integer> costcombos = new ArrayList<>();
+		for (int keyboard : keyboards) {
+			for (int drive : drives) {
+				if ((keyboard + drive) <= b)
+					costcombos.add(keyboard + drive);
+			}
+		}
+		Collections.sort(costcombos, Collections.reverseOrder());
+		return costcombos.size() >= 1 ? costcombos.get(0) : -1;
 	}
 
 	public static void main(String[] args) {
