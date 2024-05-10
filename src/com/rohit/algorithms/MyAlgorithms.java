@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyAlgorithms {
@@ -335,12 +336,116 @@ public class MyAlgorithms {
 		return costcombos.size() >= 1 ? costcombos.get(0) : -1;
 	}
 
+	static String catAndMouse(int a, int b, int m) {
+		int catA = Math.abs(m - a);
+		int catB = Math.abs(m - b);
+		if (catA == catB) {
+			return "Mouse C";
+		} else if (catA < catB) {
+			return "Cat A";
+		} else {
+			return "Cat B";
+		}
+	}
+
+	// TODO fails the time test
+	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+		// Write your code here
+		ArrayList<Integer> newRank = new ArrayList<>();
+		for (Integer p : player) {
+			ArrayList<Integer> playerRanked = new ArrayList<>();
+			playerRanked.addAll(ranked);
+			playerRanked.add(p);
+			Collections.sort(playerRanked, Collections.reverseOrder());
+			HashMap<Integer, Integer> map = new HashMap<>();
+			Integer count = 0;
+			for (int rank = 0; rank < playerRanked.size(); rank++) {
+				if (map.get(playerRanked.get(rank)) == null) {
+					count++;
+					map.put(playerRanked.get(rank), count);
+				}
+			}
+			newRank.add(map.get(p));
+		}
+		return newRank;
+	}
+
+	public static int hurdleRace(int k, List<Integer> height) {
+		// Write your code here
+		Collections.sort(height, Collections.reverseOrder());
+		return k >= height.get(0) ? 0 : height.get(0) - k;
+	}
+
+	public static int designerPdfViewer(List<Integer> h, String word) {
+		// Write your code here
+		int max = 0;
+		for (char ch : word.toCharArray()) {
+			int index = ch - 'a';
+			if (h.get(index) > max) {
+				max = h.get(index);
+			}
+		}
+		return word.length() * max;
+	}
+
+	public static int utopianTree(int n) {
+		// Write your code here
+		int height = 1;
+		for (int i = 1; i <= n; i++) {
+			System.out.println(i);
+			if (i % 2 == 0) {
+				System.out.println("add");
+				height = height + 1;
+			} else {
+				System.out.println("multiply");
+				height = height * 2;
+			}
+		}
+		return height;
+
+	}
+
+	public static String angryProfessor(int k, List<Integer> arrival) {
+		// Write your code here
+		Integer arrivedCount = 0;
+		for (Integer arrived : arrival) {
+			if (arrived <= 0) {
+				++arrivedCount;
+			}
+			if (arrivedCount >= k) {
+				// short circuit
+				return "NO";
+			}
+		}
+		if (arrivedCount >= k) {
+			// short circuit
+			return "NO";
+		}
+		return "YES";
+
+	}
+
+	public static int viralAdvertising(int days) {
+		// Write your code here
+		int likes = 0;
+		int shared = 5;
+		int cumulativelikes = 0;
+		for (int day = 0; day < days; day++) {
+			likes = (shared / 2);
+			shared = likes * 3;
+			cumulativelikes = cumulativelikes + likes;
+		}
+		return cumulativelikes;
+
+	}
+
 	public static void main(String[] args) {
 		MyAlgorithms.staircase(10);
 		MyAlgorithms.miniMaxSum(Arrays.asList(1, 2, 3, 4, 5));
 		int count = MyAlgorithms.birthdayCakeCandles(Arrays.asList(12345, 123456, 123456, 123456, 123456, 1, 2, 2, 1000,
 				9999, 9998, 10000, 10000, 10000, 10000));
 		System.out.println(count);
+		System.out.println((int) 'A');
 	}
 
 }
