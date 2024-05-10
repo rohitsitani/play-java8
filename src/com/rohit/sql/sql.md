@@ -12,7 +12,7 @@ select city, b from (select city, length(city) as b from station order by length
 #symetric pairs
 select a.x, a.y from functions a, functions b where a.x = b.y and b.x=a.y group by a.x, a.y having a.x<a.y or count(a.x)>1 order by a.x ;
 
-#interview complex join
+#interviews - complex join
 select contests.contest_id, contests.hacker_id, contests.name, 
 sum(SS.total_submissions), 
 sum(SS.total_accepted_submissions),
@@ -34,6 +34,8 @@ and  sum(SS.total_accepted_submissions) != 0
 and sum(VS.total_views) != 0 
 and sum(VS.total_unique_views) != 0
 order by contests.contest_id;
+
+--here the innermost sums are grouped as subqueries and flattened against challenge id to avoid cardinal multiplication issue when joined to previous results
 
 #15 days of learning
 With t1 as
@@ -101,3 +103,22 @@ my answer
 2016-03-13 90 30061 Julia
 2016-03-14 146 32353 Rose
 2016-03-15 117 27789 Helen
+
+#SQL project planning
+with t1 as 
+(select start_date
+from projects
+where start_date not in (select end_date from projects) order by start_date)
+,
+t2 as 
+(select end_date
+from projects
+where end_date not in (select start_date from projects) order by end_date)
+,
+t11 as 
+(select t1.*, rownum as rownum1 from t1)
+,
+t22 as 
+(select t2.*, rownum as rownum2 from t2)
+select start_date, end_date from t11 inner join t22 on t11.rownum1 = t22.rownum2 order by (t22.end_date - t11.start_date), start_date
+;
