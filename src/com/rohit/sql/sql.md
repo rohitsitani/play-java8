@@ -35,7 +35,7 @@ and sum(VS.total_views) != 0
 and sum(VS.total_unique_views) != 0
 order by contests.contest_id;
 
---here the innermost sums are grouped as subqueries and flattened against challenge id to avoid cardinal multiplication issue when joined to previous results
+-- HINT: here the innermost sums are grouped as subqueries and flattened against challenge id to avoid cardinal multiplication issue when joined to previous results
 
 #15 days of learning
 With t1 as
