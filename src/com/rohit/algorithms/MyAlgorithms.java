@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyAlgorithms {
 
@@ -349,7 +351,7 @@ public class MyAlgorithms {
 	}
 
 	// TODO fails the time test
-	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+	public static List<Integer> climbingLeaderboardOld(List<Integer> ranked, List<Integer> player) {
 		// Write your code here
 		ArrayList<Integer> newRank = new ArrayList<>();
 		for (Integer p : player) {
@@ -366,6 +368,21 @@ public class MyAlgorithms {
 				}
 			}
 			newRank.add(map.get(p));
+		}
+		return newRank;
+	}
+
+	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+		// Write your code here
+		ArrayList<Integer> newRank = new ArrayList<>();
+		List<Integer> playerRanked = ranked.stream().distinct().collect(Collectors.toList());
+		for (Integer p : player) {
+			int index = Collections.binarySearch(playerRanked, p, Collections.reverseOrder());
+			if (index < 0) {
+				index = -index - 1;
+				playerRanked.add(index, p);
+			}
+			newRank.add(index + 1);
 		}
 		return newRank;
 	}
@@ -422,7 +439,6 @@ public class MyAlgorithms {
 			return "NO";
 		}
 		return "YES";
-
 	}
 
 	public static int viralAdvertising(int days) {
@@ -436,6 +452,29 @@ public class MyAlgorithms {
 			cumulativelikes = cumulativelikes + likes;
 		}
 		return cumulativelikes;
+	}
+
+	public static int beautifulDays(int i, int j, int k) {
+		// Write your code here
+		int beautifulDays = 0;
+		for (int day = i; day <= j; day++) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(String.valueOf(day));
+			sb.reverse();
+			if ((day - Integer.valueOf(sb.toString())) % k == 0)
+				beautifulDays++;
+		}
+		return beautifulDays;
+	}
+
+	public static List<Integer> circularArrayRotation(List<Integer> a, int k, List<Integer> queries) {
+		// Write your code here
+		Collections.rotate(a, k);
+		LinkedList linkedList = new LinkedList<>();
+		for (Integer query : queries) {
+			linkedList.add(a.get(query));
+		}
+		return linkedList;
 
 	}
 
