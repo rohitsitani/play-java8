@@ -30,17 +30,11 @@ public class MyAlgorithms {
 	public static void miniMaxSum(List<Integer> arr) {
 		// Write your code here
 		Collections.sort(arr);
-		Long minSum = 0L;
-		Long maxSum = 0L;
-		for (int i = 0; i < arr.size(); i++) {
-			if (i != arr.size() - 1)
-				minSum = minSum + arr.get(i);
-			if (i != 0) {
-				maxSum = maxSum + arr.get(i);
-			}
+		long sum = 0;
+		for (Integer in : arr) {
+			sum = sum + in;
 		}
-		System.out.println(minSum + " " + maxSum);
-
+		System.out.println(String.format("%s %s", sum - arr.get(arr.size() - 1), sum - arr.get(0)));
 	}
 
 	public static int birthdayCakeCandles(List<Integer> candles) {
@@ -88,6 +82,13 @@ public class MyAlgorithms {
 
 		public SinglyLinkedList() {
 			this.head = null;
+		}
+	}
+
+	static void printLinkedList(SinglyLinkedListNode head) {
+		while (head != null) {
+			System.out.println(head.data);
+			head = head.next;
 		}
 	}
 
@@ -143,7 +144,6 @@ public class MyAlgorithms {
 			cursor++;
 		}
 		return llist;
-
 	}
 
 	// delete-a-node-from-a-linked-list
@@ -185,6 +185,26 @@ public class MyAlgorithms {
 		for (Integer in : list) {
 			System.out.println(in);
 		}
+	}
+
+	public static int getNode(SinglyLinkedListNode llist, int positionFromTail) {
+		// Write your code here
+		int size = 0;
+		SinglyLinkedListNode node = llist;
+		while (node != null) {
+			++size;
+			node = node.next;
+		}
+		System.out.println(size);
+		int i = 1;
+		while (llist != null) {
+			if (i == size - positionFromTail) {
+				return llist.data;
+			}
+			++i;
+			llist = llist.next;
+		}
+		return -1;
 	}
 
 	public static int hourglassSum(List<List<Integer>> arr) {
@@ -372,7 +392,8 @@ public class MyAlgorithms {
 		return newRank;
 	}
 
-	//worked last bit after re running again in hackerrank (not sure if execution depends on JVM)
+	// worked last bit after re running again in hackerrank (not sure if execution
+	// depends on JVM)
 	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
 		// Write your code here
 		ArrayList<Integer> newRank = new ArrayList<>();
