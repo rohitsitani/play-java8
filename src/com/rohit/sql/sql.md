@@ -23,9 +23,8 @@ inner join packages on friends.friend_id = packages.id
 select name 
 from self_package 
 inner join friend_package on self_package.id = friend_package.id 
-and friend_package.salary > self_package.salary 
+where friend_package.salary > self_package.salary 
 order by friend_package.salary;
-
 
 #The Pads (union 2 different results)
 (select concat (name, concat (concat ('(', substr(occupation, 0,1)),')')) from occupations) union (select concat ('There are a total of ', concat (concat (cc, ' '), concat (lower(occupation), 's.'))) from (select count(*) as cc, occupation from occupations group by occupation));
