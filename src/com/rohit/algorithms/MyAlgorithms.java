@@ -578,7 +578,6 @@ public class MyAlgorithms {
 
 		public void insertNode(int nodeData) {
 			DoublyLinkedListNode node = new DoublyLinkedListNode(nodeData);
-
 			if (this.head == null) {
 				this.head = node;
 			} else {
@@ -619,7 +618,6 @@ public class MyAlgorithms {
 		//last node
 		lastNode.next = node;
 		return llist1;
-
 	}
 
 	public static void main(String[] args) {

@@ -1,5 +1,31 @@
+# Reference
+https://github.com/int28h/SQLTasks/blob/master/src/hackerrank-basic-select.md
+
 #Placements (same table is joined twice)
+## self join
 select name from students, friends, packages p1, packages p2 where students.id = friends.id and students.id = p1.id and friends.friend_id = p2.id and p1.salary < p2.salary order by p2.salary;
+
+##V2 with clause
+with self_package as 
+(
+select students.id, name, salary 
+from students 
+inner join packages on students.id = packages.id
+)
+,
+friend_package as 
+(
+select students.id, salary 
+from students 
+inner join friends on students.id = friends.id 
+inner join packages on friends.friend_id = packages.id
+)
+select name 
+from self_package 
+inner join friend_package on self_package.id = friend_package.id 
+and friend_package.salary > self_package.salary 
+order by friend_package.salary;
+
 
 #The Pads (union 2 different results)
 (select concat (name, concat (concat ('(', substr(occupation, 0,1)),')')) from occupations) union (select concat ('There are a total of ', concat (concat (cc, ' '), concat (lower(occupation), 's.'))) from (select count(*) as cc, occupation from occupations group by occupation));
