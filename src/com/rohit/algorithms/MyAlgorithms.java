@@ -66,7 +66,7 @@ public class MyAlgorithms {
 
 	}
 
-	// insert-a-node-at-the-tail-of-a-linked-list
+	//Data structures: SinglyLinkedList
 	static class SinglyLinkedListNode {
 		public int data;
 		public SinglyLinkedListNode next;
@@ -92,10 +92,11 @@ public class MyAlgorithms {
 		}
 	}
 
+	// insert-a-node-at-the-tail-of-a-linked-list
 	static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
 		SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 		if (head == null) {
-			// stsrting of the DS
+			// starting of the DS
 			return newNode;
 		} else {
 			SinglyLinkedListNode temp = head;
@@ -238,8 +239,10 @@ public class MyAlgorithms {
 		Collections.reverse(tempList);
 		for (int i = 0; i < tempList.size(); i++) {
 			if (i == tempList.size() - 1) {
+				//last node should have next pointing to null
 				tempList.get(i).next = null;
 			} else {
+				//all other nodes should point to next
 				tempList.get(i).next = tempList.get(i + 1);
 			}
 		}
@@ -247,7 +250,6 @@ public class MyAlgorithms {
 	}
 
 	static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
-
 		List<SinglyLinkedListNode> tempList = new ArrayList<>();
 		while (head1 != null) {
 			tempList.add(head1);
@@ -269,7 +271,7 @@ public class MyAlgorithms {
 	}
 	
 	public static List<Integer> rotateLeft(int d, List<Integer> arr) {
-		Collections.rotate(arr, d * -1);
+		Collections.rotate(arr, -d);
 		return arr;
 	}
 
@@ -391,8 +393,8 @@ public class MyAlgorithms {
 		return newRank;
 	}
 
-	// worked last bit after re running again in hackerrank (not sure if execution
-	// depends on JVM)
+	// worked last bit after re running again in hackerrank 
+	//(not sure if execution depends on JVM)
 	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
 		// Write your code here
 		ArrayList<Integer> newRank = new ArrayList<>();
