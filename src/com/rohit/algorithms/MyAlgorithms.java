@@ -223,6 +223,7 @@ public class MyAlgorithms {
 		System.out.println("List1:" + l1);
 		int l2 = printLinkedListN(head2);
 		System.out.println("List2:" + l2);
+		// make sure the bigger list is skipped to match the smaller list length
 		if (l1 > l2) {
 			System.out.println("A:");
 			int skip = l1 - l2;
@@ -245,6 +246,7 @@ public class MyAlgorithms {
 				}
 			}
 		}
+		// iterate and find if the object is matching exactly at which node
 		int data = -1;
 		while (head1 != null && head2 != null) {
 			System.out.println("C:");
@@ -550,6 +552,73 @@ public class MyAlgorithms {
 			linkedList.add(a.get(query));
 		}
 		return linkedList;
+
+	}
+
+	static class DoublyLinkedListNode {
+		public int data;
+		public DoublyLinkedListNode next;
+		public DoublyLinkedListNode prev;
+
+		public DoublyLinkedListNode(int nodeData) {
+			this.data = nodeData;
+			this.next = null;
+			this.prev = null;
+		}
+	}
+
+	static class DoublyLinkedList {
+		public DoublyLinkedListNode head;
+		public DoublyLinkedListNode tail;
+
+		public DoublyLinkedList() {
+			this.head = null;
+			this.tail = null;
+		}
+
+		public void insertNode(int nodeData) {
+			DoublyLinkedListNode node = new DoublyLinkedListNode(nodeData);
+
+			if (this.head == null) {
+				this.head = node;
+			} else {
+				this.tail.next = node;
+				node.prev = this.tail;
+			}
+
+			this.tail = node;
+		}
+	}
+
+	public static DoublyLinkedListNode sortedInsert(DoublyLinkedListNode llist1, int data) {
+		// Write your code here
+		DoublyLinkedListNode llist = llist1;
+		DoublyLinkedListNode node = new DoublyLinkedListNode(data);
+		DoublyLinkedListNode lastNode = null;
+		while (llist != null) {
+			lastNode = llist;
+			if (llist.data > data) {
+				DoublyLinkedListNode small = llist.prev;
+				if (small == null) {
+					// start of node
+					node.next = llist;
+					node.prev = small;
+					llist.prev = node;
+					return node;
+				} else {
+					//Middle of node
+					small.next = node;
+					node.next = llist;
+					node.prev = small;
+					llist.prev = node;
+					return llist1;
+				}
+			}
+			llist = llist.next;
+		}
+		//last node
+		lastNode.next = node;
+		return llist1;
 
 	}
 
