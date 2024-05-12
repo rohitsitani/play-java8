@@ -3,7 +3,6 @@ package com.rohit.algorithms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,7 +65,7 @@ public class MyAlgorithms {
 
 	}
 
-	//Data structures: SinglyLinkedList
+	// Data structures: SinglyLinkedList
 	static class SinglyLinkedListNode {
 		public int data;
 		public SinglyLinkedListNode next;
@@ -208,8 +207,61 @@ public class MyAlgorithms {
 		return -1;
 	}
 
+	static int printLinkedListN(SinglyLinkedListNode head) {
+		SinglyLinkedListNode temp = head;
+		int length = 0;
+		while (temp != null) {
+			System.out.println(temp.data + ":" + temp);
+			temp = temp.next;
+			length++;
+		}
+		return length;
+	}
+
+	static int findMergeNode(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+		int l1 = printLinkedListN(head1);
+		System.out.println("List1:" + l1);
+		int l2 = printLinkedListN(head2);
+		System.out.println("List2:" + l2);
+		if (l1 > l2) {
+			System.out.println("A:");
+			int skip = l1 - l2;
+			while (head1 != null && skip > 0) {
+				System.out.println("AA:" + skip);
+
+				if (skip > 0) {
+					head1 = head1.next;
+					skip--;
+				}
+			}
+		} else if (l2 > l1) {
+			System.out.println("B:");
+			int skip = l2 - l1;
+			while (head2 != null && skip > 0) {
+				System.out.println("BB:" + skip);
+				if (skip > 0) {
+					head2 = head2.next;
+					skip--;
+				}
+			}
+		}
+		int data = -1;
+		while (head1 != null && head2 != null) {
+			System.out.println("C:");
+			if (head1 == head2) {
+				System.out.println("D:" + head1.data);
+				data = head1.data;
+				break;
+			}
+			head1 = head1.next;
+			head2 = head2.next;
+		}
+		return data;
+
+	}
+
 	public static int hourglassSum(List<List<Integer>> arr) {
-		// Write your code here	
+		// Write your code here
 		List<Integer> sums = new ArrayList<>();
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 4; col++) {
@@ -239,10 +291,10 @@ public class MyAlgorithms {
 		Collections.reverse(tempList);
 		for (int i = 0; i < tempList.size(); i++) {
 			if (i == tempList.size() - 1) {
-				//last node should have next pointing to null
+				// last node should have next pointing to null
 				tempList.get(i).next = null;
 			} else {
-				//all other nodes should point to next
+				// all other nodes should point to next
 				tempList.get(i).next = tempList.get(i + 1);
 			}
 		}
@@ -269,7 +321,7 @@ public class MyAlgorithms {
 		}
 		return tempList.get(0);
 	}
-	
+
 	public static List<Integer> rotateLeft(int d, List<Integer> arr) {
 		Collections.rotate(arr, -d);
 		return arr;
@@ -393,8 +445,8 @@ public class MyAlgorithms {
 		return newRank;
 	}
 
-	// worked last bit after re running again in hackerrank 
-	//(not sure if execution depends on JVM)
+	// worked last bit after re running again in hackerrank
+	// (not sure if execution depends on JVM)
 	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
 		// Write your code here
 		ArrayList<Integer> newRank = new ArrayList<>();
