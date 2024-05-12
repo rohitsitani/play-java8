@@ -208,7 +208,7 @@ public class MyAlgorithms {
 	}
 
 	public static int hourglassSum(List<List<Integer>> arr) {
-		// Write your code here
+		// Write your code here	
 		List<Integer> sums = new ArrayList<>();
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 4; col++) {
@@ -225,31 +225,6 @@ public class MyAlgorithms {
 		Collections.sort(sums);
 		System.out.println(sums);
 		return sums.get(sums.size() - 1);
-	}
-
-	public static List<Integer> rotateLeft(int d, List<Integer> arr) {
-		Collections.rotate(arr, d * -1);
-		return arr;
-	}
-
-	static boolean compareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
-		// only 1 node
-		if (head1.next == null && head2.next == null) {
-			return head1.data == head2.data;
-		}
-		// multiple nodes and does not match
-		while (head1.next != null && head2.next != null) {
-			if (head1.data != head2.data) {
-				return false;
-			}
-			head1 = head1.next;
-			head2 = head2.next;
-		}
-		// extra nodes
-		if (head1.next != null ^ head2.next != null) {
-			return false;
-		}
-		return true;
 	}
 
 	// declare the enclosing class static and then add the same method in the
@@ -292,6 +267,31 @@ public class MyAlgorithms {
 		}
 		return tempList.get(0);
 	}
+	
+	public static List<Integer> rotateLeft(int d, List<Integer> arr) {
+		Collections.rotate(arr, d * -1);
+		return arr;
+	}
+
+	static boolean compareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+		// only 1 node
+		if (head1.next == null && head2.next == null) {
+			return head1.data == head2.data;
+		}
+		// multiple nodes and does not match
+		while (head1.next != null && head2.next != null) {
+			if (head1.data != head2.data) {
+				return false;
+			}
+			head1 = head1.next;
+			head2 = head2.next;
+		}
+		// extra nodes
+		if (head1.next != null ^ head2.next != null) {
+			return false;
+		}
+		return true;
+	}
 
 	public static int pageCount(int n, int p) {
 		// Write your code here
@@ -313,7 +313,6 @@ public class MyAlgorithms {
 			System.out.println("returning forward:" + forward);
 			return forward;
 		}
-
 	}
 
 	public static int countingValleys(int steps, String path) {
